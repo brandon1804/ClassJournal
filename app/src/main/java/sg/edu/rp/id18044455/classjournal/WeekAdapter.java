@@ -16,7 +16,7 @@ public class WeekAdapter extends ArrayAdapter<DailyCA> {
     // To hold the context object
     private Context context;
     // Create the UI objects to hold the UI elements in row layout
-    private TextView tvDailyCA;
+    private TextView tvWeek;
     private TextView tvGrade;
     // Create the image object to show the image
     private ImageView ivDg;
@@ -40,7 +40,7 @@ public class WeekAdapter extends ArrayAdapter<DailyCA> {
         View rowView = inflater.inflate(R.layout.row, parent,
                 false);
         // Get the TextView object
-        tvDailyCA = rowView.findViewById(R.id.tvDailyCA);
+        tvWeek = rowView.findViewById(R.id.tvWeek);
         tvGrade = rowView.findViewById(R.id.tvGrade);
         // Get the ImageView
         ivDg = rowView.findViewById(R.id.ivDg);
@@ -48,6 +48,7 @@ public class WeekAdapter extends ArrayAdapter<DailyCA> {
         //  row ListView is requesting.
         //  We get back the object at the same index.
         DailyCA currentCA = weekList.get(position);
+        tvWeek.setText("week " + String.valueOf(position + 1));
         // Set the TextView to show the object info
         tvGrade.setText(currentCA.getDgGrade());
         // Set the ImageView to show the image
