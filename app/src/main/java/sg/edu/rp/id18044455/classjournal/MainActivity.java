@@ -32,31 +32,20 @@ public class MainActivity extends AppCompatActivity {
 
         lv.setAdapter(adapter);
 
-        /*
-
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                Intent i = new Intent(FirstActivity.this, SecondActivity.class);
+                Intent i = new Intent(MainActivity.this, SecondActivity.class);
                 switch( position )
                 {
                     case 0:
-                        i.putExtra("year","Year 1");
-                        break;
-                    case 1:
-                        i.putExtra("year","Year 2");
-                        break;
-                    case 2:
-                        i.putExtra("year","Year 3");
+                        i.putExtra("module","C347");
                         break;
                 }
                 startActivity(i);
             }
         });
-
-         */
-
     }
 }
