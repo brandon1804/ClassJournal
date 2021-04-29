@@ -26,7 +26,6 @@ public class AddActivity extends AppCompatActivity {
 
         Intent i = new Intent();
 
-
         String moduleCode = i.getStringExtra("module");
         int week = i.getIntExtra("week", 0);
 
@@ -59,8 +58,6 @@ public class AddActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
 
 
 

@@ -25,7 +25,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/ivDg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/dg" />
@@ -36,11 +36,16 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvDG"
+                android:id="@+id/tvDailyCA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DG"
                 android:textColor="#FFC107" />
+
+            <TextView
+                android:id="@+id/tvGrade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </LinearLayout>

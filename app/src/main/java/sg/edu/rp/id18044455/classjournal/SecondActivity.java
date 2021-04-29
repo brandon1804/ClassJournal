@@ -14,6 +14,7 @@ public class SecondActivity extends AppCompatActivity {
 
     Button btnInfo;
     Button btnEmail;
+
     ArrayList<DailyCA> dailyCA;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
