@@ -1,6 +1,8 @@
 package sg.edu.rp.id18044455.classjournal;
 
-public class DailyCA {
+import java.io.Serializable;
+
+public class DailyCA implements Serializable {
 
     String dgGrade;
     String moduleCode;
