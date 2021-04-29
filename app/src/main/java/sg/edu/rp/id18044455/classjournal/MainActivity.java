@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ListView lv;
-    ArrayList<String> modulesArrayList;
+    ArrayList<Module> modulesArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +24,12 @@ public class MainActivity extends AppCompatActivity {
 
         lv = findViewById(R.id.lvModules);
 
-        modulesArrayList = new ArrayList<String>();
+        modulesArrayList = new ArrayList<Module>();
 
-        modulesArrayList.add("C347");
+        modulesArrayList.add(new Module("C302", "Web Services", "https://www.rp.edu.sg/schools-courses/courses/full-time-diplomas/full-time-courses/modules/index/C300"));
+        modulesArrayList.add(new Module("C347", "Android Programming II", "https://www.rp.edu.sg/schools-courses/courses/full-time-diplomas/full-time-courses/modules/index/C346"));
 
-        ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, modulesArrayList);
+        ModulesAdapter adapter =  new ModulesAdapter(this, R.layout.mainactivityrow, modulesArrayList);
 
         lv.setAdapter(adapter);
 
@@ -38,12 +39,8 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
 
                 Intent i = new Intent(MainActivity.this, SecondActivity.class);
-                switch( position )
-                {
-                    case 0:
-                        i.putExtra("module","C347");
-                        break;
-                }
+                i.putExtra("module",modulesArrayList.get(position).getModuleCode());
+                i.putExtra("moduleURL",modulesArrayList.get(position).getUrl());
                 startActivity(i);
             }
         });

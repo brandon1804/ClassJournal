@@ -10,6 +10,7 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,25 +18,33 @@ public class SecondActivity extends AppCompatActivity {
     ListView lvGrade;
     int requestCodeForModule = 1;
     String text = "";
+    String module, moduleURL;
     Button btnAdd;
     Button btnInfo;
     Button btnEmail;
     ArrayAdapter aa;
     ArrayList<DailyCA> dailyCAList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         lvGrade = findViewById(R.id.lvGrade);
-        btnEmail = (Button) findViewById(R.id.btnEmail);
+        btnEmail = findViewById(R.id.btnEmail);
+        btnInfo = findViewById(R.id.btnInfo);
+        btnAdd = findViewById(R.id.btnAdd);
 
         Intent i = getIntent();
-        String module = i.getStringExtra("module");
+        module = i.getStringExtra("module");
+        moduleURL = i.getStringExtra("moduleURL");
         getSupportActionBar().setTitle("Info for " + module);
 
-        dailyCAList = new ArrayList<DailyCA>();
+        dailyCAList = new ArrayList<>();
+        dailyCAList.add(new DailyCA("A",  "C347", 1));
+
         aa = new WeekAdapter(this, R.layout.row, dailyCAList);
         lvGrade.setAdapter(aa);
+
         btnEmail.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0) {
@@ -56,36 +65,35 @@ public class SecondActivity extends AppCompatActivity {
 
             }});
 
-        btnInfo = findViewById(R.id.btnInfo);
+
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                // Intent to display data
                 Intent infoIntent = new Intent(Intent.ACTION_VIEW);
-                // Set the URL to be used.
-                infoIntent.setData(Uri.parse("https://www.rp.edu.sg/soi/full-time-diplomas/details/diploma-in-digital-design-and-development"));
+                infoIntent.setData(Uri.parse(moduleURL));
                 startActivity(infoIntent);
             }
         });
 
-        btnAdd = findViewById(R.id.btnAdd);
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View arg0) {
                 Intent i = new Intent(SecondActivity.this, AddActivity.class);
-                i.putExtra("week", dailyCAList.size());
-                i.putExtra("module", module);
-                startActivityForResult(i,requestCodeForModule);
+                i.putExtra("week", dailyCAList.size() + 1);
+                i.putExtra("moduleCode", module);
+                startActivityForResult(i, requestCodeForModule);
             }
         });
     }
-    @Override
-    protected void onActivityResult(int requestCode, int 				resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
             if (data != null) {
-
                 if(requestCode == requestCodeForModule){
                     dailyCAList.add((DailyCA)data.getSerializableExtra("newDailyCA"));
                     aa.notifyDataSetChanged();
