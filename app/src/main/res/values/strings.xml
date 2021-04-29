@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">ClassJournal</string>
     <string name="Submit">Submit</string>
+    <string name="A">A</string>
+    <string name="B">B</string>
+    <string name="C">C</string>
+    <string name="D">D</string>
+    <string name="F">F</string>
+    <string name="X">X</string>
+
 </resources>
